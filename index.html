@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/images/calendar icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="./src/assets/images/calendar icon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./src/assets/styles/main.css"/>
     <title>Reminder calendar</title>
   </head>
   <body>
@@ -14,9 +15,9 @@
       </div>
 
       <div class="second-section">
-        <button class="add-reminder">Añade un recordatorio a tu agenda</button>
+        <button id="add-reminder" class="add-reminder">Añade un recordatorio a tu agenda</button>
         <br></br> <!-- cambiar por estilos en CSS -->
-        <form class="add-form">
+        <form id="add-form" class="add-form">
           <textarea id="add-textarea" class="add-textarea" placeholder="Escribe aquí tu recordatorio, por ejemplo: Salir a merendar a las 16:30"></textarea> <!-- Validación para que no se pueda guardar vacío. Campo obligatorio -->
           <br></br> <!-- cambiar por estilos en CSS -->
           <label for="week-day">¿Para qué día de la semana es este recordatorio?</label>
@@ -83,9 +84,19 @@
             <option value="Dec">Diciembre</option>
            </select>
            <br></br> <!-- cambiar por estilos en CSS -->
-           <button class="save-reminder">Guardar recordatorio</button>
+           <button id="save-reminder" class="save-reminder">Guardar recordatorio</button>
         </form>
       </div>
+      <div class="third-section">
+        <h3 class="reminder-title">Mis recordatorios</h3>
+        <ul class="reminder-list">
+          <li></li>
+        </ul>
+    </div>
+    <div class="fourth-section">
+      <h3 class="all-reminders">Todos mis recordatorios</h3>
+      <h3 class="pending-reminders">Recordatorios pendientes</h3>
+      <h3 class="completed-reminders">Recordatorios completados</h3>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
