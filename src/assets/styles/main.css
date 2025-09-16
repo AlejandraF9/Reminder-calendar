@@ -1,3 +1,7 @@
 .add-form {
     display: none;
 }
+
+.add-form.visible {
+    display: block;
+}

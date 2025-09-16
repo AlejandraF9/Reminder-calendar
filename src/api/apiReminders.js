@@ -24,8 +24,8 @@ export async function createNewReminder(task) {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
             reminder: task.reminder,
-            weekday: task.weekday,
-            monthday: task.monthday,
+            weekDay: task.weekDay,
+            monthDay: task.monthDay,
             month: task.month
         }),
     });
