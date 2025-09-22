@@ -39,3 +39,16 @@ export async function createNewReminder(task) {
     console.error("Error", error);
    }
 }
+
+export async function deleteReminder(id) {
+  const url = `${baseUrl}/reminders/${id}`;
+  try {
+    const response = await fetch(url, { method: "DELETE" });
+    
+    if (!response.ok) {
+        throw new Error("Error eliminando el recordatorio");
+    }
+  } catch (error) {
+    console.error("Error", error);
+  }
+}

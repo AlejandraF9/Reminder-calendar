@@ -5,3 +5,37 @@
 .add-form.visible {
     display: block;
 }
+
+.icon {
+    height: 90%;
+    width: 90%;
+}
+
+.completed-button, .delete-button {
+    height: 40px;
+    width: 50px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.completed-button {
+    border-color: rgb(104, 207, 104);
+}
+
+.completed-button:hover {
+    background-color: rgb(154, 226, 154);;
+}
+
+.delete-button {
+    border-color: red;
+}
+
+.delete-button:hover {
+    background-color: rgb(226, 157, 157);
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+    opacity: 0.7;
+}
