@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./src/assets/images/calendar icon.png"/>
@@ -15,12 +15,12 @@
       </div>
 
       <div class="second-section">
-        <button id="add-reminder" class="add-reminder">Añade un recordatorio a tu agenda</button>
+        <button id="add-reminder" class="add-reminder" aria-label="Añadir recordatorio">Añade un recordatorio a tu agenda</button>
         <br></br> <!-- cambiar por estilos en CSS -->
         <form id="add-form" class="add-form">
           <textarea id="add-textarea" class="add-textarea" placeholder="Escribe aquí tu recordatorio, por ejemplo: Salir a merendar a las 16:30"></textarea> <!-- Validación para que no se pueda guardar vacío. Campo obligatorio -->
           <br></br> <!-- cambiar por estilos en CSS -->
-          <label for="week-day">¿Para qué día de la semana es este recordatorio?</label>
+          <label for="week-day">Selecciona el día de la semana para tu recordatorio</label>
           <select name="week-day" id="week-day" class="select-week-day">
             <!-- <option value="weekDay">Día de la semana</option> -->
             <option value="Mo">Lunes</option>
@@ -33,7 +33,7 @@
           </select>
           <!-- Validación para que ese día esté dentro del mes. Campo no obligatorio por si la persona aún no controla tanto la web. Que no pueda dejarse seleccionado el primer option -->
            <br></br> <!-- cambiar por estilos en CSS -->
-           <label for="month-day">¿Para qué día del mes es este recordatorio?</label>
+           <label for="month-day">Selecciona el día del mes para tu recordatorio</label>
            <select name="month-day" id="month-day">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -68,7 +68,7 @@
             <option value="31">31</option>
            </select>
            <br></br> <!-- cambiar por estilos en CSS -->
-           <label for="month">¿Para qué mes es este recordatorio?</label>
+           <label for="month">Selecciona el mes para tu recordatorio</label>
            <select name="month" id="month">
             <option value="Jan">Enero</option>
             <option value="Feb">Febrero</option>
@@ -84,7 +84,7 @@
             <option value="Dec">Diciembre</option>
            </select>
            <br></br> <!-- cambiar por estilos en CSS -->
-           <button id="save-reminder" class="save-reminder">Guardar recordatorio</button>
+           <button id="save-reminder" class="save-reminder" aria-label="Guardar recordatorio">Guardar recordatorio</button>
         </form>
       </div>
       <div class="third-section">

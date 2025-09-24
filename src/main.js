@@ -1,4 +1,4 @@
-import { createNewReminder, getAllReminders, deleteReminder } from "./api/apiReminders";
+import { createNewReminder, getAllReminders, deleteReminder, updateReminder } from "./api/apiReminders";
 import { validateTextarea } from "./utils/validations";
 import { showToast } from "./utils/toastify";
 
@@ -17,6 +17,7 @@ addForm.addEventListener("submit", async(e) => {
         weekDay: document.getElementById("week-day").value,
         monthDay: document.getElementById("month-day").value,
         month: document.getElementById("month").value,
+        completed: false,
     };
 
     const validReminder = validateTextarea(task.reminder);
@@ -72,36 +73,42 @@ async function showReminders() {
     dataReminders.forEach(reminder => {
         const reminderLi = document.createElement("li");
         reminderLi.classList.add("reminder-item");
+        if(reminder.completed) reminderLi.classList.add("completed");
 
         reminderLi.innerHTML = `
         <span class="reminder-text">${reminder.reminder} - ${weekDaysMap[reminder.weekDay]} ${reminder.monthDay} de ${monthsMap[reminder.month]}</span>
-        <button class="completed-button">
+        <button class="completed-button" aria-label="Marcar recordatorio como completado">
             <img src="/src/assets/images/completed icon.png" alt="icon for completed tasks" class="icon">
         </button>
-        <button class="delete-button">
+        <button class="delete-button" aria-label="Eliminar recordatorio">
             <img src="/src/assets/images/delete icon.png" alt="icon for delete tasks" class="icon">
         </button>`;
 
-        reminderLi.querySelector(".completed-button").addEventListener("click", () => {
-            const completedList = document.getElementById("completed-list");
-            reminderLi.classList.toggle("completed");
-            completedList.appendChild(reminderLi);
+        if(!reminder.completed) {
+            reminderLi.querySelector(".completed-button").addEventListener("click", async () => {
+                await updateReminder(reminder.id, {...reminder, completed: true});
 
-            const completedButton = reminderLi.querySelector(".completed-button");
-            completedButton.disabled = true;
-            completedButton.style.opacity = "0.5";
-            completedButton.style.cursor = "not-allowed";
-        });
+                showToast({text: "Recordatorio completado", type: "success"});
+
+                showReminders();
+            });
+
+            reminderList.appendChild(reminderLi);
+
+        } else {
+            completedList.appendChild(reminderLi);
+        }
 
         reminderLi.querySelector(".delete-button").addEventListener("click", async () => {
             await deleteReminder(reminder.id);
+
+            showToast({text: "Recordatorio eliminado", type: "success"});
+            
             showReminders();
         });
-
-        reminderList.appendChild(reminderLi);
     });
 }
 
 showReminders();
 
-//incluir toastify para botón de eliminar
+//validaciones para escoger fecha adecuada, no 31 de febrero por ejemplo

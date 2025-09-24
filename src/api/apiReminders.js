@@ -19,25 +19,45 @@ export async function createNewReminder(task) {
    const url = `${baseUrl}/reminders`;
    
    try {
-    const response = await fetch(url, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            reminder: task.reminder,
-            weekDay: task.weekDay,
-            monthDay: task.monthDay,
-            month: task.month
-        }),
-    });
-
-    if(!response.ok) {
-        throw new Error("Error en la petición createNewReminder");
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                reminder: task.reminder,
+                weekDay: task.weekDay,
+                monthDay: task.monthDay,
+                month: task.month,
+                completed: false
+            }),
+        });
+        
+        if(!response.ok) {
+            throw new Error("Error en la petición createNewReminder");
+        }
+        const newReminder = await response.json();
+        return newReminder;
+    } catch(error) {
+        console.error("Error", error);
     }
-    const newReminder = await response.json();
-    return newReminder;
-   } catch(error) {
-    console.error("Error", error);
-   }
+}
+
+export async function updateReminder(id, updatedData) {
+    const url = `${baseUrl}/reminders/${id}`;
+    try {
+        const response = await fetch(url, {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(updatedData),
+        });
+
+        if(!response.ok) {
+            throw new Error("Error en la petición updatedReminder");
+        }
+
+        return await response.json();
+    } catch(error) {
+        console.error("Error", error);
+    }
 }
 
 export async function deleteReminder(id) {
